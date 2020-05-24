@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Tetris Records</string>
+    <string name="addviewbtn">Add/View Games</string>
+    <string name="statsbtn">Overall Stats</string>
 </resources>
