@@ -2,5 +2,7 @@
     <string name="app_name">Tetris Records</string>
     <string name="addviewbtn">Add/View Games</string>
     <string name="statsbtn">Overall Stats</string>
+    <string name="score_entry">Enter score</string>
+    <string name="submit_score_btn">Submit</string>
     <string name="logodescription">Logo for the app menu</string>
 </resources>
