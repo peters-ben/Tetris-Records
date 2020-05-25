@@ -2,12 +2,17 @@ package com.example.tetrisrecords;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class addViewActivity extends AppCompatActivity {
 
@@ -18,14 +23,24 @@ public class addViewActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_add_view);
         Button submitBtn = findViewById(R.id.submitBtn);
+        final LinearLayout linearLayout = findViewById(R.id.linearLayout);
+        final ArrayList<GameStat> games = new ArrayList<>();
+        final ArrayList<TextView> scoreDisplays = new ArrayList<>();
         final EditText scoreEntry = findViewById(R.id.scoreEntry);
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GameStat game = new GameStat();
-                game.setScore(Integer.parseInt(scoreEntry.getText().toString()));
+                GameStat newGame = new GameStat();
+                newGame.setScore(Integer.parseInt(scoreEntry.getText().toString()));
+                games.add(newGame);
                 scoreEntry.setText("");
-
+                final TextView newTextView = new TextView(getApplicationContext());
+                newTextView.setText(Integer.toString(games.get(games.size() - 1).getScore()));
+                newTextView.setTextColor(Color.WHITE);
+                newTextView.setTextSize(40);
+                newTextView.setGravity(Gravity.CENTER);
+                linearLayout.addView(newTextView);
+                scoreDisplays.add(newTextView);
             }
         });
     }
