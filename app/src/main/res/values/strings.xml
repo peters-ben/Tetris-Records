@@ -4,5 +4,7 @@
     <string name="statsbtn">Overall Stats</string>
     <string name="score_entry">Enter score</string>
     <string name="submit_score_btn">Submit</string>
+    <string name="date_entry">Enter date</string>
     <string name="logodescription">Logo for the app menu</string>
+    <string name="display">%s %d</string>
 </resources>

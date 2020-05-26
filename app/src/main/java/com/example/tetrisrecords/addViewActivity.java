@@ -27,15 +27,19 @@ public class addViewActivity extends AppCompatActivity {
         final ArrayList<GameStat> games = new ArrayList<>();
         final ArrayList<TextView> scoreDisplays = new ArrayList<>();
         final EditText scoreEntry = findViewById(R.id.scoreEntry);
+        final EditText dateEntry = findViewById(R.id.dateEntry);
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 GameStat newGame = new GameStat();
                 newGame.setScore(Integer.parseInt(scoreEntry.getText().toString()));
+                newGame.setDate(dateEntry.getText().toString());
                 games.add(newGame);
                 scoreEntry.setText("");
+                dateEntry.setText("");
                 final TextView newTextView = new TextView(getApplicationContext());
-                newTextView.setText(Integer.toString(games.get(games.size() - 1).getScore()));
+                newTextView.setText(String.format(getResources().getString(R.string.display),
+                        games.get(games.size() - 1).getDate(), games.get(games.size() - 1).getScore()));
                 newTextView.setTextColor(Color.WHITE);
                 newTextView.setTextSize(40);
                 newTextView.setGravity(Gravity.CENTER);
