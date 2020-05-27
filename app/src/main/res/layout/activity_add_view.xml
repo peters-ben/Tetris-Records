@@ -8,15 +8,15 @@
 
     <EditText
         android:id="@+id/scoreEntry"
-        android:layout_width="151dp"
-        android:layout_height="46dp"
+        android:layout_width="128dp"
+        android:layout_height="47dp"
         android:ems="10"
         android:hint="@string/score_entry"
         android:importantForAutofill="no"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.838"
+        app:layout_constraintHorizontal_bias="0.568"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023" />
@@ -58,13 +58,28 @@
         android:layout_width="141dp"
         android:layout_height="46dp"
         android:ems="10"
+        android:hint="@string/date_entry"
         android:importantForAutofill="no"
         android:inputType="date"
-        android:hint="@string/date_entry"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/scoreEntry"
-        app:layout_constraintHorizontal_bias="0.34"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
+
+    <EditText
+        android:id="@+id/levelEntry"
+        android:layout_width="92dp"
+        android:layout_height="45dp"
+        android:ems="10"
+        android:hint="@string/level"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.377"
+        app:layout_constraintStart_toEndOf="@+id/scoreEntry"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023" />
 

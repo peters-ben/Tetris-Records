@@ -6,5 +6,6 @@
     <string name="submit_score_btn">Submit</string>
     <string name="date_entry">Enter date</string>
     <string name="logodescription">Logo for the app menu</string>
-    <string name="display">%s %d</string>
+    <string name="display">%s %d %d</string>
+    <string name="level">Level Start</string>
 </resources>
