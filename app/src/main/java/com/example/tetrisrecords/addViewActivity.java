@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -25,12 +26,14 @@ public class addViewActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_add_view);
         Button submitBtn = findViewById(R.id.submitBtn);
-        final LinearLayout linearLayout = findViewById(R.id.linearLayout);
         final ArrayList<GameStat> games = new ArrayList<>();
         final ArrayList<TextView> scoreDisplays = new ArrayList<>();
         final EditText scoreEntry = findViewById(R.id.scoreEntry);
         final EditText dateEntry = findViewById(R.id.dateEntry);
         final EditText levelEntry = findViewById(R.id.levelEntry);
+        CustomAdapter adapter = new CustomAdapter(this, R.layout.adapter_view_layout, games);
+        final ListView mListView = findViewById(R.id.listView);
+        mListView.setAdapter(adapter);
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,7 +56,7 @@ public class addViewActivity extends AppCompatActivity {
                     newTextView.setTextColor(Color.WHITE);
                     newTextView.setTextSize(40);
                     newTextView.setGravity(Gravity.CENTER);
-                    linearLayout.addView(newTextView);
+                  //  mListView.addHeaderView(newTextView);
                     scoreDisplays.add(newTextView);
 
                 }
