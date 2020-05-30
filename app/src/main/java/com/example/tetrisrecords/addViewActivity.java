@@ -1,24 +1,21 @@
 package com.example.tetrisrecords;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
 public class addViewActivity extends AppCompatActivity {
 
+    private ListView listView;
+    private CustomAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,17 +23,19 @@ public class addViewActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_add_view);
         Button submitBtn = findViewById(R.id.submitBtn);
-        final ArrayList<GameStat> games = new ArrayList<>();
+        final ArrayList<GameStat> gameList = new ArrayList<>();
         final EditText scoreEntry = findViewById(R.id.scoreEntry);
         final EditText dateEntry = findViewById(R.id.dateEntry);
         final EditText levelEntry = findViewById(R.id.levelEntry);
-        final CustomAdapter adapter = new CustomAdapter(this, R.layout.adapter_view_layout, games);
-        final ListView mListView = findViewById(R.id.listView);
+        final ImageView xView = findViewById(R.id.xView);
+        final ImageView editView = findViewById(R.id.editView);
+        listView = findViewById(R.id.listView);
+        adapter = new CustomAdapter(this, gameList);
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                listView.setAdapter(adapter);
                 GameStat newGame = new GameStat();
-                mListView.setAdapter(adapter);
                 if(!scoreEntry.getText().toString().equals("")) {
                     newGame.setScore(Integer.parseInt(scoreEntry.getText().toString()));
                     newGame.setDate(dateEntry.getText().toString());
@@ -44,12 +43,10 @@ public class addViewActivity extends AppCompatActivity {
                         newGame.setLevel(0);
                     else
                         newGame.setLevel(Integer.parseInt(levelEntry.getText().toString()));
-                    games.add(0, newGame);
+                    gameList.add(0, newGame);
                     scoreEntry.setText("");
                     levelEntry.setText("");
                     dateEntry.setText("");
-
-
                 }
             }
         });
