@@ -2,10 +2,17 @@
     <string name="app_name">Tetris Records</string>
     <string name="addviewbtn">Add/View Games</string>
     <string name="statsbtn">Overall Stats</string>
-    <string name="score_entry">Enter score</string>
+    <string name="score_entry">Score</string>
     <string name="submit_score_btn">Submit</string>
-    <string name="date_entry">Enter date</string>
+    <string name="date_entry">Date (YYYY/MM/DD)</string>
     <string name="logodescription">Logo for the app menu</string>
     <string name="display">%s %d %d</string>
     <string name="level">Level Start</string>
+    <string name="sortName">Sort</string>
+    <string-array name="sort">
+        <item>Sort by</item>
+        <item>Date</item>
+        <item>Score</item>
+        <item>Level</item>
+    </string-array>
 </resources>

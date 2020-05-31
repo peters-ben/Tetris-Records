@@ -11,6 +11,7 @@
         android:layout_width="128dp"
         android:layout_height="47dp"
         android:ems="10"
+        android:textSize="16sp"
         android:hint="@string/score_entry"
         android:importantForAutofill="no"
         android:inputType="number"
@@ -38,29 +39,33 @@
     <EditText
         android:id="@+id/dateEntry"
         android:layout_width="141dp"
-        android:layout_height="46dp"
+        android:layout_height="47dp"
         android:ems="10"
         android:hint="@string/date_entry"
         android:importantForAutofill="no"
+        android:textAlignment="center"
+        android:textSize="14sp"
         android:inputType="date"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/scoreEntry"
         app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintVertical_bias="0.023"
+        android:gravity="center_horizontal" />
 
     <EditText
         android:id="@+id/levelEntry"
-        android:layout_width="92dp"
-        android:layout_height="45dp"
+        android:layout_width="93dp"
+        android:layout_height="47dp"
         android:ems="10"
         android:hint="@string/level"
         android:importantForAutofill="no"
         android:inputType="number"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.377"
+        app:layout_constraintHorizontal_bias="0.448"
         app:layout_constraintStart_toEndOf="@+id/scoreEntry"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023" />
@@ -74,5 +79,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
+
+    <Spinner
+        android:id="@+id/sortSpinner"
+        android:layout_width="123dp"
+        android:layout_height="40dp"
+        android:prompt="@string/sortName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.944"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.153" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

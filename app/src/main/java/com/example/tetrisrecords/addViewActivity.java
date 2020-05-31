@@ -3,14 +3,22 @@ package com.example.tetrisrecords;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.TooManyListenersException;
 
 public class addViewActivity extends AppCompatActivity {
 
@@ -24,6 +32,11 @@ public class addViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_view);
         Button submitBtn = findViewById(R.id.submitBtn);
         final ArrayList<GameStat> gameList = new ArrayList<>();
+        Spinner sortSpinner = findViewById(R.id.sortSpinner);
+        ArrayAdapter<String> spinnerAdapter =new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.sort));
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sortSpinner.setAdapter(spinnerAdapter);
         final EditText scoreEntry = findViewById(R.id.scoreEntry);
         final EditText dateEntry = findViewById(R.id.dateEntry);
         final EditText levelEntry = findViewById(R.id.levelEntry);
@@ -48,6 +61,31 @@ public class addViewActivity extends AppCompatActivity {
                     levelEntry.setText("");
                     dateEntry.setText("");
                 }
+            }
+        });
+        sortSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String item = parent.getItemAtPosition(position).toString();
+                switch (item) {
+                    case "Date":
+                        Collections.sort(gameList, new GameStat.GameDateCompare());
+                        adapter.notifyDataSetChanged();
+                        break;
+                    case "Score":
+                        Collections.sort(gameList, new GameStat.GameScoreCompare());
+                        adapter.notifyDataSetChanged();
+                        break;
+                    case "Level":
+                        Collections.sort(gameList, new GameStat.GameLevelCompare());
+                        adapter.notifyDataSetChanged();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
             }
         });
     }
