@@ -1,9 +1,9 @@
 package com.example.tetrisrecords;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -11,14 +11,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.TooManyListenersException;
 
 public class addViewActivity extends AppCompatActivity {
 
@@ -27,11 +24,12 @@ public class addViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final DataBase dataBase = new DataBase(addViewActivity.this);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_add_view);
-        Button submitBtn = findViewById(R.id.submitBtn);
-        final ArrayList<GameStat> gameList = new ArrayList<>();
+        final Button submitBtn = findViewById(R.id.submitBtn);
+        final ArrayList<GameStat> gameList = dataBase.getAll();
         Spinner sortSpinner = findViewById(R.id.sortSpinner);
         ArrayAdapter<String> spinnerAdapter =new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.sort));
@@ -44,10 +42,10 @@ public class addViewActivity extends AppCompatActivity {
         final ImageView editView = findViewById(R.id.editView);
         listView = findViewById(R.id.listView);
         adapter = new CustomAdapter(this, gameList);
+        listView.setAdapter(adapter);
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listView.setAdapter(adapter);
                 GameStat newGame = new GameStat();
                 if(!scoreEntry.getText().toString().equals("")) {
                     newGame.setScore(Integer.parseInt(scoreEntry.getText().toString()));
@@ -60,6 +58,8 @@ public class addViewActivity extends AppCompatActivity {
                     scoreEntry.setText("");
                     levelEntry.setText("");
                     dateEntry.setText("");
+                    dataBase.addGame(newGame);
+                    adapter.notifyDataSetChanged();
                 }
             }
         });

@@ -2,16 +2,24 @@ package com.example.tetrisrecords;
 
 import java.util.Comparator;
 
-public class GameStat {
-    public GameStat() {
+class GameStat {
+    GameStat() {
         score = 0;
         level = 0;
         date = "";
+        this.id = counter++;
     }
     static class GameDateCompare implements Comparator<GameStat> {
         @Override
         public int compare(GameStat o1, GameStat o2) {
-            return o1.getDate().compareTo(o2.getDate());
+            int returnValue;
+            if(o1.getDate().isEmpty())
+                returnValue = 1;
+            else if (o2.getDate().isEmpty())
+                returnValue = -1;
+            else
+                returnValue = o1.getDate().compareTo(o2.getDate());
+            return returnValue;
         }
     }
     static class GameScoreCompare implements Comparator<GameStat> {
@@ -52,6 +60,7 @@ public class GameStat {
     void setLevel(int newLevel) {
         level = newLevel;
     }
+    void setId(int newId) {id = newId;}
     String getDate() {
         return date;
     }
@@ -61,7 +70,10 @@ public class GameStat {
     int getScore() {
         return score;
     }
+    int getId() {return id;}
     private int score;
     private int level;
     private String date;
+    private int id;
+    private static int counter = 1;
 }

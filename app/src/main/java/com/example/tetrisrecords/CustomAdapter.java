@@ -14,8 +14,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
@@ -34,6 +32,7 @@ public class CustomAdapter extends ArrayAdapter<GameStat> {
     @NonNull
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
+        final DataBase db = new DataBase(getContext());
         View game = convertView;
         if(game == null) {
             game = LayoutInflater.from(mContext).inflate(R.layout.adapter_view_layout, parent, false);
@@ -56,6 +55,8 @@ public class CustomAdapter extends ArrayAdapter<GameStat> {
         ivX.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                notifyDataSetChanged();
+                db.deleteGame(currentGame);
                 gameList.remove(currentGame);
                 notifyDataSetChanged();
             }
@@ -82,14 +83,32 @@ public class CustomAdapter extends ArrayAdapter<GameStat> {
                 edit.setView(layout);
                 edit.setPositiveButton("Save", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        Toast.makeText(getContext(), "Score Changed", Toast.LENGTH_LONG).show();
-                        currentGame.setDate(dateEdit.getText().toString());
-                        currentGame.setScore(Integer.parseInt(scoreEdit.getText().toString()));
-                        currentGame.setLevel(Integer.parseInt(levelEdit.getText().toString()));
-                        notifyDataSetChanged();
+                        if (!scoreEdit.getText().toString().isEmpty()) {
+                            if(levelEdit.getText().toString().isEmpty())
+                                levelEdit.setText("0");
+                            DataBase db = new DataBase(getContext());
+                            String date = dateEdit.getText().toString();
+                            date = date.replaceAll("\\s", "");
+                            if (date.isEmpty())
+                                db.editGame(currentGame, "''", Integer.parseInt(
+                                        scoreEdit.getText().toString()), Integer.parseInt(levelEdit.
+                                        getText().toString()));
+
+                            else
+                                db.editGame(currentGame, date,
+                                        Integer.parseInt(scoreEdit.getText().toString()),
+                                        Integer.parseInt(levelEdit.getText().toString()));
+
+                                Toast.makeText(getContext(), "Score Changed", Toast.LENGTH_LONG).show();
+                                currentGame.setDate(dateEdit.getText().toString());
+                                currentGame.setScore(Integer.parseInt(scoreEdit.getText().toString()));
+                                currentGame.setLevel(Integer.parseInt(levelEdit.getText().toString()));
+                                notifyDataSetChanged();
+                            }
+                        else
+                            Toast.makeText(getContext(), "Please enter a score!", Toast.LENGTH_LONG).show();
                     }
                 });
-
                 edit.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                     }
