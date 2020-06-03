@@ -2,7 +2,7 @@ package com.example.tetrisrecords;
 
 import java.util.Comparator;
 
-class GameStat {
+class GameStat{
     GameStat() {
         score = 0;
         level = 0;

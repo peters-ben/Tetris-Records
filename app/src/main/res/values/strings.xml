@@ -9,6 +9,16 @@
     <string name="display">%s %d %d</string>
     <string name="level">Level Start</string>
     <string name="sortName">Sort</string>
+    <string name="high_score">High Score: %d</string>
+    <string name="high_score_NA">High Score: N/A</string>
+    <string name="average_score">Average Score: %s</string>
+    <string name="average_score_NA">Average Score: N/A</string>
+    <string name="number_of_scores">Number of Scores: %d</string>
+    <string name="median_score">Median Score: %s</string>
+    <string name="median_score_NA">Median Score: N/A</string>
+    <string name="date">Date</string>
+    <string name="score">Score</string>
+    <string name="level_name">Level</string>
     <string-array name="sort">
         <item>Sort by</item>
         <item>Date</item>

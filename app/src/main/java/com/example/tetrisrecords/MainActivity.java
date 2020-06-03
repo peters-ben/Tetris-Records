@@ -25,5 +25,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(addViewIntent);
             }
         });
+        statsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent statsIntent = new Intent(getApplicationContext(), StatsActivity.class);
+                startActivity(statsIntent);
+            }
+        });
     }
 }
