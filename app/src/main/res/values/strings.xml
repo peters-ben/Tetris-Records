@@ -19,6 +19,8 @@
     <string name="date">Date</string>
     <string name="score">Score</string>
     <string name="level_name">Level</string>
+    <string name="delete_all">Delete All Scores</string>
+    <string name="verify">Are you sure you want to delete ALL scores? This CANNOT be undone!</string>
     <string-array name="sort">
         <item>Sort by</item>
         <item>Date</item>

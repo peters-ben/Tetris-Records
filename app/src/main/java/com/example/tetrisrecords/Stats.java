@@ -8,9 +8,8 @@ class Stats {
     int highScore(ArrayList<GameStat> games) {
         int high = 0;
         for(GameStat game : games) {
-            if (game.getScore() > high) {
+            if (game.getScore() > high)
                 high = game.getScore();
-            }
         }
         return high;
     }
@@ -25,8 +24,6 @@ class Stats {
     float medianScore(ArrayList<GameStat> games) {
         Collections.sort(games, new GameStat.GameScoreCompare());
         float returnValue;
-        int num1 = games.get((games.size() / 2 - 1)).getScore();
-        int num2 = games.get(games.size() / 2).getScore();
         if(games.size() % 2 != 0)
             returnValue =  (float) games.get((int) Math.floor((double) games.size() / 2)).getScore();
         else

@@ -98,11 +98,10 @@ public class CustomAdapter extends ArrayAdapter<GameStat> {
                                 db.editGame(currentGame, date,
                                         Integer.parseInt(scoreEdit.getText().toString()),
                                         Integer.parseInt(levelEdit.getText().toString()));
-
-                                Toast.makeText(getContext(), "Score Changed", Toast.LENGTH_LONG).show();
-                                currentGame.setDate(dateEdit.getText().toString());
-                                currentGame.setScore(Integer.parseInt(scoreEdit.getText().toString()));
-                                currentGame.setLevel(Integer.parseInt(levelEdit.getText().toString()));
+                            Toast.makeText(getContext(), "Score Changed", Toast.LENGTH_LONG).show();
+                            currentGame.setDate(dateEdit.getText().toString());
+                            currentGame.setScore(Integer.parseInt(scoreEdit.getText().toString()));
+                            currentGame.setLevel(Integer.parseInt(levelEdit.getText().toString()));
                                 notifyDataSetChanged();
                             }
                         else

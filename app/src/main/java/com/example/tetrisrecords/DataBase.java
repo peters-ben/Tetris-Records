@@ -49,6 +49,12 @@ public class DataBase extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(queryString, null);
         cursor.moveToFirst();
     }
+    void deleteAll() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String queryString = " DELETE FROM " + GAMES_TABLE;
+        Cursor cursor = db.rawQuery(queryString, null);
+        cursor.moveToFirst();
+    }
     void editGame(GameStat game, String date, int score, int level) {
         SQLiteDatabase db = this.getWritableDatabase();
         String queryString = " UPDATE " + GAMES_TABLE + " SET " + COLUMN_DATE + " = " + date + ", "

@@ -58,4 +58,17 @@
         app:layout_constraintTop_toBottomOf="@+id/numScores"
         app:layout_constraintVertical_bias="0.029999971" />
 
+    <Button
+        android:id="@+id/deleteAllButton"
+        android:padding="7dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/delete_all"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.04"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/medianScore"
+        app:layout_constraintVertical_bias="0.025" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
