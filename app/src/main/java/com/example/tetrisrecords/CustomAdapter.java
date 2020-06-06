@@ -15,10 +15,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
-
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+    Description: A class for creating a custom adapter to be used on the view in the addViewActivity
+    in order to display previously entered scores in a neat format.
+ */
 @SuppressWarnings("ALL")
 public class CustomAdapter extends ArrayAdapter<GameStat> {
     private Context mContext;
@@ -32,7 +35,7 @@ public class CustomAdapter extends ArrayAdapter<GameStat> {
     @NonNull
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        final DataBase db = new DataBase(getContext());
+        final DataBase db = new DataBase(getContext()); // allows access to database from SQLite
         View game = convertView;
         if(game == null) {
             game = LayoutInflater.from(mContext).inflate(R.layout.adapter_view_layout, parent, false);
@@ -52,11 +55,10 @@ public class CustomAdapter extends ArrayAdapter<GameStat> {
         tvDate.setText(date);
         tvScore.setText(Integer.toString(score));
         tvLevel.setText(Integer.toString(level));
-        ivX.setOnClickListener(new View.OnClickListener() {
+        ivX.setOnClickListener(new View.OnClickListener() { // if user clicks X button
             @Override
             public void onClick(View v) {
-                notifyDataSetChanged();
-                db.deleteGame(currentGame);
+                db.deleteGame(currentGame); // remove game from database
                 gameList.remove(currentGame);
                 notifyDataSetChanged();
             }
@@ -64,7 +66,7 @@ public class CustomAdapter extends ArrayAdapter<GameStat> {
         ivEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder edit = new AlertDialog.Builder(getContext());
+                AlertDialog.Builder edit = new AlertDialog.Builder(getContext()); // create alert for user to enter new values
                 edit.setTitle("Edit Score");
                 LinearLayout layout = new LinearLayout(getContext());
                 layout.setOrientation(LinearLayout.VERTICAL);
@@ -81,20 +83,20 @@ public class CustomAdapter extends ArrayAdapter<GameStat> {
                 levelEdit.setInputType(InputType.TYPE_CLASS_NUMBER);
                 layout.addView(levelEdit);
                 edit.setView(layout);
-                edit.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                edit.setPositiveButton("Save", new DialogInterface.OnClickListener() { // if user clicks Save button
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        if (!scoreEdit.getText().toString().isEmpty()) {
-                            if(levelEdit.getText().toString().isEmpty())
+                        if (!scoreEdit.getText().toString().isEmpty()) { // if user entered a score
+                            if(levelEdit.getText().toString().isEmpty()) // if user didn't enter a level
                                 levelEdit.setText("0");
                             DataBase db = new DataBase(getContext());
                             String date = dateEdit.getText().toString();
                             date = date.replaceAll("\\s", "");
-                            if (date.isEmpty())
+                            if (date.isEmpty()) // if user didn't empty a date
                                 db.editGame(currentGame, "''", Integer.parseInt(
                                         scoreEdit.getText().toString()), Integer.parseInt(levelEdit.
                                         getText().toString()));
 
-                            else
+                            else // if user did enter a date
                                 db.editGame(currentGame, date,
                                         Integer.parseInt(scoreEdit.getText().toString()),
                                         Integer.parseInt(levelEdit.getText().toString()));
@@ -104,15 +106,15 @@ public class CustomAdapter extends ArrayAdapter<GameStat> {
                             currentGame.setLevel(Integer.parseInt(levelEdit.getText().toString()));
                                 notifyDataSetChanged();
                             }
-                        else
+                        else // if user didn't enter a score
                             Toast.makeText(getContext(), "Please enter a score!", Toast.LENGTH_LONG).show();
                     }
                 });
-                edit.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                edit.setNegativeButton("Cancel", new DialogInterface.OnClickListener() { // if user clicks Cancel button
                     public void onClick(DialogInterface dialog, int whichButton) {
                     }
                 });
-                edit.show();
+                edit.show(); // display Alert
             }
         });
         return game;
