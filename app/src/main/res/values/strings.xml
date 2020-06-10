@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Tetris Records</string>
+    <string name="app_name">Vault</string>
     <string name="addviewbtn">Add/View Games</string>
     <string name="statsbtn">Overall Stats</string>
     <string name="score_entry">Score</string>
@@ -21,6 +21,8 @@
     <string name="level_name">Level</string>
     <string name="delete_all">Delete All Scores</string>
     <string name="verify">Are you sure you want to delete ALL scores? This CANNOT be undone!</string>
+    <string name="edit_icon">Edit icon</string>
+    <string name="delete_icon">Delete icon</string>
     <string-array name="sort">
         <item>Sort by</item>
         <item>Date</item>

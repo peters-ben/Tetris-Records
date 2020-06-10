@@ -53,7 +53,7 @@ public class StatsActivity extends AppCompatActivity {
                 verify.setText(R.string.verify);
                 layout.addView(verify);
                 delete.setView(layout);
-                delete.setPositiveButton("Delete ALL Scores", new DialogInterface.OnClickListener() { // if user clicks Delete ALL Button
+                delete.setPositiveButton("Delete", new DialogInterface.OnClickListener() { // if user clicks Delete ALL Button
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dataBase.deleteAll();
