@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:background="@color/darkgray"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="100">
+
+    <TextView
+        android:id="@+id/dateView"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:text="@string/date"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:layout_weight="35.0"/>
+
+    <TextView
+        android:id="@+id/scoreView"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:text="@string/score"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:layout_weight="37.0"/>
+    <TextView
+        android:id="@+id/levelView"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:text="@string/level_name"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:layout_weight="25.0"/>
+
+
+    <ImageView
+        android:id="@+id/editView"
+        android:contentDescription="@string/edit_icon"
+        android:layout_width="40dp"
+        android:layout_height="60dp"
+        android:clickable="true"
+        android:src="@drawable/edit_icon"
+        android:focusable="true" />
+
+    <ImageView
+        android:id="@+id/xView"
+        android:contentDescription="@string/delete_icon"
+        android:layout_width="25dp"
+        android:layout_height="60dp"
+        android:clickable="true"
+        android:src="@drawable/x_icon"
+        android:focusable="true" />
+
+</LinearLayout>
