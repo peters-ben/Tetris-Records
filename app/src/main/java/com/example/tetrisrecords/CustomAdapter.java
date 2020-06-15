@@ -15,6 +15,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+
+import com.vicmikhailau.maskededittext.MaskedFormatter;
+import com.vicmikhailau.maskededittext.MaskedWatcher;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,7 +76,9 @@ public class CustomAdapter extends ArrayAdapter<GameStat> {
                 layout.setOrientation(LinearLayout.VERTICAL);
                 final EditText dateEdit= new EditText(getContext());
                 dateEdit.setHint("Date");
-                dateEdit.setInputType(InputType.TYPE_CLASS_DATETIME);
+                dateEdit.setInputType(InputType.TYPE_CLASS_NUMBER);
+                MaskedFormatter formatter = new MaskedFormatter("####/##/##");
+                dateEdit.addTextChangedListener(new MaskedWatcher(formatter, dateEdit));
                 layout.addView(dateEdit);
                 final EditText scoreEdit = new EditText(getContext());
                 scoreEdit.setHint("Score");
